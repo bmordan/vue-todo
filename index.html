@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main id="todo-list">
+            <section id="list">
+                <h2>Tasks</h2>
+                <article class="todo" v-for="(todo, i) in todos">
+                    <p v-bind:class="{done: todo.status === 1}">{{ todo.task }}</p>
+                    <button v-if="todo.status === 0" v-on:click="update(i)">DONE</button>
+                    <button v-if="todo.status === 1" v-on:click="remove(i)">DELETE</button>
+                </article>
+            </section>
+            <section>
+                <form>
+                    <label v-on:click="add">Add Task</label>
+                    <input v-model="task" v-on:keypress.enter.prevent="add" />
+                </form>
+            </section>
+        </main>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="/main.js"></script>
+    </body>
+</html>
